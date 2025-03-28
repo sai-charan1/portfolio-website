@@ -1,5 +1,5 @@
 'use client';
-import {useState, useRef, useEffect} from 'react';
+import {useEffect,useRef, useState} from 'react';
 
 type ChatMessage = {
   role: 'user' | 'assistant';
@@ -85,22 +85,22 @@ export default function PortfolioChatbot() {
           {/* Chat header */}
           <div className="bg-indigo-600 p-4 text-white flex justify-between items-center">
             <h2 className="font-bold text-lg">My Portfolio Assistant</h2>
-            <button onClick={toggleChat} className="p-1 rounded-full hover:bg-indigo-700 transition-colors">
+            <button className="p-1 rounded-full hover:bg-indigo-700 transition-colors" onClick={toggleChat}>
               ✖
             </button>
           </div>
 
           {/* Chat messages area */}
-          <div ref={chatContainerRef} className="flex-1 p-4 overflow-y-auto space-y-3">
+          <div className="flex-1 p-4 overflow-y-auto space-y-3" ref={chatContainerRef}>
             {chatHistory.length === 0 ? (
               <div className="text-center text-gray-600 mt-8">
                 <h3 className="text-lg font-medium">Ask me about my work</h3>
                 <div className="space-y-2 mt-4">
                   {suggestedQuestions.map((question, i) => (
                     <button
+                      className="text-sm bg-white border border-indigo-200 rounded-lg px-3 py-2 hover:bg-indigo-50 transition-colors w-full text-left"
                       key={i}
-                      onClick={() => setUserInput(question)}
-                      className="text-sm bg-white border border-indigo-200 rounded-lg px-3 py-2 hover:bg-indigo-50 transition-colors w-full text-left">
+                      onClick={() => setUserInput(question)}>
                       {question}
                     </button>
                   ))}
@@ -108,7 +108,7 @@ export default function PortfolioChatbot() {
               </div>
             ) : (
               chatHistory.map((msg, i) => (
-                <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                <div className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`} key={i}>
                   <div
                     className={`max-w-[85%] rounded-xl px-4 py-2 ${
                       msg.role === 'user'
@@ -141,20 +141,20 @@ export default function PortfolioChatbot() {
           </div>
 
           {/* Input area */}
-          <form onSubmit={handleSendMessage} className="border-t border-gray-200 p-3 bg-white">
+          <form className="border-t border-gray-200 p-3 bg-white" onSubmit={handleSendMessage}>
             <div className="flex gap-2">
               <input
-                type="text"
-                value={userInput}
-                onChange={e => setUserInput(e.target.value)}
-                placeholder="Type your question..."
                 className="flex-1 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm"
                 disabled={isThinking}
+                onChange={e => setUserInput(e.target.value)}
+                placeholder="Type your question..."
+                type="text"
+                value={userInput}
               />
               <button
-                type="submit"
+                className="bg-indigo-600 text-white px-4 rounded-lg disabled:bg-gray-400 hover:bg-indigo-700 transition-colors text-sm font-medium"
                 disabled={!userInput || isThinking}
-                className="bg-indigo-600 text-white px-4 rounded-lg disabled:bg-gray-400 hover:bg-indigo-700 transition-colors text-sm font-medium">
+                type="submit">
                 Send
               </button>
             </div>
@@ -162,8 +162,8 @@ export default function PortfolioChatbot() {
         </div>
       ) : (
         <button
-          onClick={toggleChat}
-          className="bg-indigo-600 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-indigo-700 transition-colors animate-bounce">
+          className="bg-indigo-600 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-indigo-700 transition-colors animate-bounce"
+          onClick={toggleChat}>
           💬
         </button>
       )}
