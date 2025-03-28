@@ -1,5 +1,5 @@
 'use client';
-import { useState, useRef, useEffect } from 'react';
+import {useState, useRef, useEffect} from 'react';
 
 type ChatMessage = {
   role: 'user' | 'assistant';
@@ -23,45 +23,42 @@ export default function PortfolioChatbot() {
     const newUserMessage: ChatMessage = {
       role: 'user',
       content: userInput,
-      timestamp: new Date()
+      timestamp: new Date(),
     };
 
-    setChatHistory((prev) => [...prev, newUserMessage]);
+    setChatHistory(prev => [...prev, newUserMessage]);
     setUserInput('');
     setIsThinking(true);
 
     try {
       const response = await fetch('/api/chat', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-          messages: [
-            ...chatHistory.map((m) => ({ role: m.role, content: m.content })),
-            { role: 'user', content: userInput }
-          ]
-        })
+          messages: [...chatHistory.map(m => ({role: m.role, content: m.content})), {role: 'user', content: userInput}],
+        }),
       });
 
       if (!response.ok) throw new Error('Network response was not ok');
 
       const botResponse = await response.json();
-      setChatHistory((prev) => [
+      setChatHistory(prev => [
         ...prev,
         {
           role: 'assistant',
           content: botResponse.content,
-          timestamp: new Date()
-        }
+          timestamp: new Date(),
+        },
       ]);
     } catch (error) {
       console.error('Error:', error);
-      setChatHistory((prev) => [
+      setChatHistory(prev => [
         ...prev,
         {
           role: 'assistant',
           content: "I'm having trouble connecting. Please try again shortly.",
-          timestamp: new Date()
-        }
+          timestamp: new Date(),
+        },
       ]);
     } finally {
       setIsThinking(false);
@@ -71,14 +68,14 @@ export default function PortfolioChatbot() {
   useEffect(() => {
     chatContainerRef.current?.scrollTo({
       top: chatContainerRef.current.scrollHeight,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   }, [chatHistory]);
 
   const suggestedQuestions = [
     'What projects have you worked on?',
     'Tell me about your education background',
-    'What technical skills do you have?'
+    'What technical skills do you have?',
   ];
 
   return (
@@ -103,8 +100,7 @@ export default function PortfolioChatbot() {
                     <button
                       key={i}
                       onClick={() => setUserInput(question)}
-                      className="text-sm bg-white border border-indigo-200 rounded-lg px-3 py-2 hover:bg-indigo-50 transition-colors w-full text-left"
-                    >
+                      className="text-sm bg-white border border-indigo-200 rounded-lg px-3 py-2 hover:bg-indigo-50 transition-colors w-full text-left">
                       {question}
                     </button>
                   ))}
@@ -118,11 +114,10 @@ export default function PortfolioChatbot() {
                       msg.role === 'user'
                         ? 'bg-indigo-600 text-white rounded-br-none'
                         : 'bg-white border border-gray-200 rounded-bl-none shadow-sm'
-                    }`}
-                  >
+                    }`}>
                     <div className="text-sm">{msg.content}</div>
                     <div className={`text-xs mt-1 ${msg.role === 'user' ? 'text-indigo-200' : 'text-gray-500'}`}>
-                      {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      {msg.timestamp.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}
                     </div>
                   </div>
                 </div>
@@ -133,8 +128,12 @@ export default function PortfolioChatbot() {
                 <div className="bg-white border border-gray-200 rounded-xl rounded-bl-none px-4 py-3 shadow-sm">
                   <div className="flex space-x-2">
                     <div className="w-2 h-2 bg-indigo-400 rounded-full animate-pulse"></div>
-                    <div className="w-2 h-2 bg-indigo-400 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                    <div className="w-2 h-2 bg-indigo-400 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                    <div
+                      className="w-2 h-2 bg-indigo-400 rounded-full animate-pulse"
+                      style={{animationDelay: '0.2s'}}></div>
+                    <div
+                      className="w-2 h-2 bg-indigo-400 rounded-full animate-pulse"
+                      style={{animationDelay: '0.4s'}}></div>
                   </div>
                 </div>
               </div>
@@ -147,7 +146,7 @@ export default function PortfolioChatbot() {
               <input
                 type="text"
                 value={userInput}
-                onChange={(e) => setUserInput(e.target.value)}
+                onChange={e => setUserInput(e.target.value)}
                 placeholder="Type your question..."
                 className="flex-1 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm"
                 disabled={isThinking}
@@ -155,8 +154,7 @@ export default function PortfolioChatbot() {
               <button
                 type="submit"
                 disabled={!userInput || isThinking}
-                className="bg-indigo-600 text-white px-4 rounded-lg disabled:bg-gray-400 hover:bg-indigo-700 transition-colors text-sm font-medium"
-              >
+                className="bg-indigo-600 text-white px-4 rounded-lg disabled:bg-gray-400 hover:bg-indigo-700 transition-colors text-sm font-medium">
                 Send
               </button>
             </div>
@@ -165,8 +163,7 @@ export default function PortfolioChatbot() {
       ) : (
         <button
           onClick={toggleChat}
-          className="bg-indigo-600 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-indigo-700 transition-colors animate-bounce"
-        >
+          className="bg-indigo-600 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-indigo-700 transition-colors animate-bounce">
           💬
         </button>
       )}
