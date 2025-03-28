@@ -1,6 +1,6 @@
 // src/pages/api/chat.ts
 
-import { NextResponse } from 'next/server';
+import {NextResponse} from 'next/server';
 
 export const runtime = 'edge';
 export const maxDuration = 30; // 30-second timeout
@@ -19,13 +19,14 @@ interface ChatResponse {
   content: string;
 }
 
-export default async function handler(req: Request) { // Use default export
+export default async function handler(req: Request) {
+  // Use default export
   if (req.method !== 'POST') {
-    return NextResponse.json({ error: 'Method Not Allowed' }, { status: 405 });
+    return NextResponse.json({error: 'Method Not Allowed'}, {status: 405});
   }
 
   try {
-    const { messages } = (await req.json()) as ChatRequest;
+    const {messages} = (await req.json()) as ChatRequest;
 
     const systemPrompt = `
     You are Sai Charan's portfolio assistant. Use ONLY these facts:
@@ -89,14 +90,11 @@ export default async function handler(req: Request) { // Use default export
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.TOGETHER_API_KEY}`, // Fixed syntax
+        Authorization: `Bearer ${process.env.TOGETHER_API_KEY}`, // Fixed syntax
       },
       body: JSON.stringify({
         model: 'mistralai/Mistral-7B-Instruct-v0.1',
-        messages: [
-          { role: 'system', content: systemPrompt },
-          ...messages.filter(m => m.role && m.content),
-        ],
+        messages: [{role: 'system', content: systemPrompt}, ...messages.filter(m => m.role && m.content)],
         temperature: 0.3,
         max_tokens: 500,
         top_p: 0.9,
@@ -110,7 +108,6 @@ export default async function handler(req: Request) { // Use default export
 
     const data = await response.json();
     return NextResponse.json(data.choices[0].message as ChatResponse);
-
   } catch (error) {
     console.error('Chat API Error:', error);
     return NextResponse.json(
@@ -118,8 +115,7 @@ export default async function handler(req: Request) { // Use default export
         role: 'assistant',
         content: "I'm currently unavailable. Please contact Navadeep directly at munjamnavadeep123@gmail.com",
       },
-      { status: 500 }
+      {status: 500},
     );
   }
 }
-

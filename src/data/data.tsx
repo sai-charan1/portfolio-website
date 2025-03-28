@@ -62,8 +62,9 @@ export const heroData: Hero = {
   description: (
     <>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        A Hyderabad based <strong className="text-stone-100">Full Stack And Machine Learning Engineer</strong>, currently studying
-        at <strong className="text-stone-100">IIT BHILAI</strong>  working on AI-driven risk modeling and computer vision projects.
+        A Hyderabad based <strong className="text-stone-100">Full Stack And Machine Learning Engineer</strong>,
+        currently studying at <strong className="text-stone-100">IIT BHILAI</strong> working on AI-driven risk modeling
+        and computer vision projects.
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
         In my free time time, you can catch me playing <strong className="text-stone-100">Volleyball 🏐</strong>,
@@ -183,24 +184,26 @@ export const skills: SkillGroup[] = [
 export const portfolioItems: PortfolioItem[] = [
   {
     title: 'Automatic License Plate Detection',
-    description: 'Built an AI-based vehicle identification system using YOLOv8 and OCR, processing 5,000+ vehicles with high accuracy.',
+    description:
+      'Built an AI-based vehicle identification system using YOLOv8 and OCR, processing 5,000+ vehicles with high accuracy.',
     url: 'https://github.com/sai-charan1/license-plate-detection',
     image: porfolioImage1,
   },
   {
     title: 'Credit Card Risk Monitoring System',
-    description: 'Developed an ML model using XGBoost to predict credit card approval risk with 80% accuracy, deployed via Flask.',
+    description:
+      'Developed an ML model using XGBoost to predict credit card approval risk with 80% accuracy, deployed via Flask.',
     url: 'https://github.com/sai-charan1/credit-card-risk-monetering',
     image: porfolioImage1,
   },
   {
     title: 'Movie Recommender System',
-    description: 'Created a content-based recommendation system using Cosine Similarity, analyzing 8,500+ movies for personalized suggestions.',
+    description:
+      'Created a content-based recommendation system using Cosine Similarity, analyzing 8,500+ movies for personalized suggestions.',
     url: 'https://github.com/sai-charan1/movie-recommender',
     image: porfolioImage1,
   },
 ];
-
 
 /**
  * Resume section -- TODO: Standardize resume contact format or offer MDX
@@ -227,10 +230,9 @@ export const experience: TimelineItem[] = [
     title: 'Research And Development Intern',
     content: (
       <p>
-        Developed an advanced system using C++ and Arduino to assess the impact of wearable technology,
-        leading to increased engagement with over 300 farmers in health improvement initiatives.
-    </p>
-
+        Developed an advanced system using C++ and Arduino to assess the impact of wearable technology, leading to
+        increased engagement with over 300 farmers in health improvement initiatives.
+      </p>
     ),
   },
   {
@@ -239,10 +241,9 @@ export const experience: TimelineItem[] = [
     title: 'ML Intern',
     content: (
       <p>
-        Implemented and trained a Vision Transformer (ViT) model on the CIFAR-10 dataset to evaluate its
-        performance against traditional Convolutional Neural Networks (CNNs). Utilized self-attention
-        mechanisms to capture global and local features, achieving competitive accuracy in image classification
-        tasks.
+        Implemented and trained a Vision Transformer (ViT) model on the CIFAR-10 dataset to evaluate its performance
+        against traditional Convolutional Neural Networks (CNNs). Utilized self-attention mechanisms to capture global
+        and local features, achieving competitive accuracy in image classification tasks.
       </p>
     ),
   },
@@ -266,7 +267,6 @@ export const testimonial: TestimonialSection = {
     },
   ],
 };
-
 
 /**
  * Contact section
@@ -304,7 +304,11 @@ export const contact: ContactSection = {
  */
 export const socialLinks: Social[] = [
   {label: 'Github', Icon: GithubIcon, href: 'https://github.com/sai-charan1'},
-  {label: 'Stack Overflow', Icon: StackOverflowIcon, href: 'https://stackoverflow.com/users/22011433/sripada-sai-charan'},
+  {
+    label: 'Stack Overflow',
+    Icon: StackOverflowIcon,
+    href: 'https://stackoverflow.com/users/22011433/sripada-sai-charan',
+  },
   {label: 'LinkedIn', Icon: LinkedInIcon, href: 'https://www.linkedin.com/in/sripada-sai-charan/'},
   {label: 'Instagram', Icon: InstagramIcon, href: 'https://www.instagram.com/sai._.charan_19/'},
   //{label: 'Twitter', Icon: TwitterIcon, href: ''},
