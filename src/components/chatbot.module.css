@@ -1,0 +1,232 @@
+.container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 350px;
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+    background: white;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .header {
+    background: linear-gradient(135deg, #4a6fa5, #3a5a80);
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  
+  .headerContent {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .header span {
+    font-size: 20px;
+    font-weight: 300;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+  }
+  
+  .messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background: #f5f7fa;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .message {
+    margin-bottom: 0;
+    padding: 10px 14px;
+    border-radius: 18px;
+    max-width: 80%;
+    word-wrap: break-word;
+    line-height: 1.4;
+    animation: fadeIn 0.3s ease forwards;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .user {
+    background: #4a6fa5;
+    color: white;
+    margin-left: auto;
+    border-bottom-right-radius: 5px;
+  }
+  
+  .bot {
+    background: #e9eff5;
+    color: #333;
+    margin-right: auto;
+    border-bottom-left-radius: 5px;
+  }
+  
+  .welcome {
+    background: #d4e3f3;
+    color: #2c3e50;
+  }
+  
+  .inputContainer {
+    display: flex;
+    padding: 12px;
+    background: white;
+    border-top: 1px solid #e1e5eb;
+    gap: 8px;
+  }
+  
+  .inputContainer input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+    font-size: 14px;
+    transition: border 0.2s;
+  }
+  
+  .inputContainer input:focus {
+    border-color: #4a6fa5;
+  }
+  
+  .sendButton {
+    padding: 0 16px;
+    min-width: 60px;
+    background: #4a6fa5;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sendButton:hover {
+    background: #3a5a80;
+  }
+  
+  .sendButton:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .typingIndicator {
+    display: flex;
+    align-items: center;
+    height: 20px;
+    gap: 4px;
+  }
+  
+  .typingIndicator span {
+    width: 8px;
+    height: 8px;
+    background-color: #666;
+    border-radius: 50%;
+    display: inline-block;
+    animation: typingAnimation 1.4s infinite ease-in-out;
+  }
+  
+  @keyframes typingAnimation {
+    0%, 60%, 100% {
+      transform: translateY(0);
+    }
+    30% {
+      transform: translateY(-5px);
+    }
+  }
+  
+  .suggestions {
+    padding: 10px;
+    margin-top: 10px;
+    background: #f0f4f8;
+    border-radius: 8px;
+  }
+  
+  .suggestions p {
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    color: #4a6fa5;
+    font-weight: 500;
+  }
+  
+  .suggestionButton {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin: 4px 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.85em;
+  }
+  
+  .suggestionButton:hover {
+    background: #e3f2fd;
+    border-color: #4a6fa5;
+  }
+  
+  .spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Scrollbar styling */
+  .messages::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .messages::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  
+  .messages::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+  }
+  
+  .messages::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+  }
